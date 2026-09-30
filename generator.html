@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✉️ Write Your Letter</title>
+  <base href="/Sorry-confess-cope-ver-2/">
+  <style>
+    *{box-sizing:border-box; font-family:system-ui, sans-serif; margin:0; padding:0;}
+    body{background:linear-gradient(135deg, #f8f0f0 0%, #eef2f5 100%); min-height:100vh; padding:2rem 1.2rem; max-width:650px; margin:0 auto;}
+    h1{text-align:center; color:#4a3f5c; margin-bottom:0.5rem;}
+    .subtitle{text-align:center; color:#7a7285; margin-bottom:2rem;}
+    textarea{width:100%; height:160px; padding:1rem; border-radius:12px; border:2px solid #ddd; font-size:1rem; margin-bottom:1rem;}
+    button{background:linear-gradient(135deg, #a889c2 0%, #8b70b0 100%); color:white; border:none; padding:0.9rem 1.5rem; border-radius:10px; font-size:1rem; cursor:pointer; margin:0.3rem 0; width:100%;}
+    button:hover{background:linear-gradient(135deg, #9678b6 0%, #7a5f9e 100%);}
+    #result{margin-top:2rem; padding:1.5rem; background:white; border-radius:12px; display:none; box-shadow:0 3px 12px rgba(0,0,0,0.08);}
+    input{width:100%; padding:0.8rem; border-radius:8px; border:1px solid #ccc; margin:1rem 0; font-size:0.9rem;}
+    .back{display:block; text-align:center; margin-top:2rem; color:#888; text-decoration:none;}
+  </style>
+</head>
+<body>
+
+  <h1>✉️ Write What Your Heart Truly Feels</h1>
+  <p class="subtitle">Be honest. Be kind. Be YOU.</p>
+
+  <textarea id="letterInput" placeholder="Start writing here... I want to say sorry because..."></textarea>
+  
+  <button onclick="generateLink()">✨ Generate Share Link</button>
+  <button onclick="copyText()" style="background:#6b7280;">📋 Copy Text Directly</button>
+
+  <div id="result">
+    <h3>✅ Done! Share this link:</h3>
+    <input id="linkOutput" type="text" readonly>
+    <button onclick="copyLink()">📋 Copy Link</button>
+  </div>
+
+  <a href="index.html" class="back">← Back to Safe Space</a>
+
+<script>
+function generateLink(){
+  const text = document.getElementById('letterInput').value;
+  if(!text.trim()){ alert('Write something first 💙'); return; }
+  const encoded = encodeURIComponent(text);
+  const base = window.location.origin + '/Sorry-confess-cope-ver-2/';
+  const link = base + '?letter=' + encoded;
+  document.getElementById('linkOutput').value = link;
+  document.getElementById('result').style.display = 'block';
+}
+function copyLink(){
+  navigator.clipboard.writeText(document.getElementById('linkOutput').value);
+  alert('Link copied! 🎉');
+}
+function copyText(){
+  navigator.clipboard.writeText(document.getElementById('letterInput').value);
+  alert('Text copied! 📋');
+}
+</script>
+
+</body>
+</html>
